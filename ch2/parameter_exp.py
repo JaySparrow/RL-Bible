@@ -84,7 +84,7 @@ def plot_stationary():
 # Exercise 2.11: parameter study of nonstationary environment
 def plot_nonstationary():
     # get data
-    with open('param_study.pkl', 'rb') as f:
+    with open('parameter_nonstationary.pkl', 'rb') as f:
         data = pickle.load(f)
     parameters = data['parameters']
     rewards = data['rewards']
@@ -95,12 +95,12 @@ def plot_nonstationary():
     for i in range(rewards.shape[0]):
         ax.plot(parameters, rewards[i, :], color=COLORS[i])
     ax.set_xscale('log', base=2)
-    # ax.set_ylim(1, 1.5)
+    # ax.set_ylim(4, 9)
     ax.set_xlabel("eps Q0 c alpha")
     ax.set_ylabel("Average reward over last 100000 steps")
     ax.legend(labels=["eps-greedy", "greedy(alpha=0.1)", "UCB", "gradient"])
     fig.savefig("parameter_nonstationary.png")
 
 if __name__ == '__main__':
-    param_study(time_steps=200000, avg_steps=100000, env_type=KArmedNonstationaryEnv)
-    # plot_nonstationary()
+    # param_study(time_steps=200000, avg_steps=100000, env_type=KArmedNonstationaryEnv)
+    plot_nonstationary()
